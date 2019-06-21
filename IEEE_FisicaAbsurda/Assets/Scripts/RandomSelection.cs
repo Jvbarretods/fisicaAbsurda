@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSelection : MonoBehaviour
 {
     static public List<int> ordemSalas = new List<int>(); //Lista que irá armazenar a ordem das Salas
-    private List<int> ordemTiros = new List<int>(); //Lista que irá armazenar a ordem dos Tiros
+    static public List<int> ordemTiros = new List<int>(); //Lista que irá armazenar a ordem dos Tiros
 
     public void ListaRandomSemRepeticao(List<int> lista, int numLimite) //Todos os números entre 1 e o "numLimite" serão salvos aleatóriamente na Lista indicada no parâmetro
     {
+        LimparLista(lista);
         for (int i = 0; i < numLimite; i++)
         {
         gerar:
@@ -40,12 +42,11 @@ public class RandomSelection : MonoBehaviour
         return randNum.Next(1, i); //Escolhe aleatoriamente números de 1 até "i"
     }
 
-    protected void LimparLista(List<int> lista)//Removerá todos os elementos da Lista indicada no parâmetro 
+    private void LimparLista(List<int> lista)//Removerá todos os elementos da Lista indicada no parâmetro 
     {
         for(int i = lista.Count; i > 0 ; i--)
         {
             lista.RemoveAt(0);
-            Debug.Log("Tamanho: " + lista.Count);
         }
     }
 }
